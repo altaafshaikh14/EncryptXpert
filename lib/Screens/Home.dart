@@ -1,9 +1,53 @@
 import 'package:flutter/material.dart';
 import '../colors.dart';
 import 'dart:math';
+import 'Encrypt.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String? _selectedEncryption;
+  int _selectedIndex = 0; // Set the Encrypt tab as initially selected
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+      // Stay on the Home screen (no action needed)
+      case 1:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => EncryptScreen()),
+        );
+        break;
+    // Add cases for other navigation items if needed
+    // case 2:
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => DecryptScreen()),
+    //   );
+    //   break;
+    // case 3:
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => ActivityScreen()),
+    //   );
+    //   break;
+    // case 4:
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => SettingsScreen()),
+    //   );
+    //   break;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +58,7 @@ class HomeScreen extends StatelessWidget {
         flexibleSpace: SafeArea(
           child: _buildAppBarContent(),
         ),
-        toolbarHeight: 80.0, // Increase this value if needed for proper spacing
+        toolbarHeight: 100.0, // Increase this value if needed for proper spacing
       ),
       backgroundColor: colors.darkColor,
       body: Column(
@@ -68,10 +112,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         backgroundColor: colors.darkMediumColor,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: colors.lightColor,
+
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -94,6 +136,11 @@ class HomeScreen extends StatelessWidget {
             label: 'Settings',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: colors.lightColor,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
