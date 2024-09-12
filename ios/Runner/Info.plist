@@ -33,6 +33,12 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		 <string>tel</string>
+          <string>mailto</string>
+          <string>sms</string>
+          <string>http</string>
+          <string>https</string>
+          <string>file</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -40,6 +46,12 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		 <string>tel</string>
+          <string>mailto</string>
+          <string>sms</string>
+          <string>http</string>
+          <string>https</string>
+          <string>file</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
