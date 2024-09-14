@@ -78,7 +78,8 @@ class _EncryptScreenState extends State<EncryptScreen> {
     final status = await Permission.storage.request();
     if (!status.isGranted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Storage permission is required to open files.')),
+        SnackBar(
+            content: Text('Storage permission is required to open files.')),
       );
     }
   }
@@ -113,20 +114,21 @@ class _EncryptScreenState extends State<EncryptScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1, // 10% of screen height
+        toolbarHeight:
+            MediaQuery.of(context).size.height * 0.1, // 10% of screen height
         title: const Text('Encrypt File'),
         titleTextStyle: TextStyle(
           color: Colors.white,
-          fontSize: MediaQuery.of(context).size.width * 0.07, // 7% of screen width
+          fontSize:
+              MediaQuery.of(context).size.width * 0.07, // 7% of screen width
           fontWeight: FontWeight.bold,
         ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-           children: [
+          children: [
             GestureDetector(
               onTap: () {
                 if (!_isFileSelected) {
@@ -138,67 +140,78 @@ class _EncryptScreenState extends State<EncryptScreen> {
               //     ? () => _viewFile(_selectedFilePath!)
               //     : _pickFile, // Open file if selected, otherwise pick a new file
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.2, // 20% of screen height
-                width: MediaQuery.of(context).size.width * 0.8, // 80% of screen width
+                height: MediaQuery.of(context).size.height *
+                    0.2, // 20% of screen height
+                width: MediaQuery.of(context).size.width *
+                    0.8, // 80% of screen width
                 decoration: BoxDecoration(
                   color: const Color(0xFF1F2A34),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: _isLoading
                     ? const Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
-                )
-                    : _fileName == null
-                    ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.insert_drive_file,
-                      color: Colors.white,
-                      size: MediaQuery.of(context).size.width * 0.12, // 12% of screen width
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02), // 2% of screen height
-                    Text(
-                      'Select File',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: MediaQuery.of(context).size.width * 0.05, // 5% of screen width
-                      ),
-                    ),
-                  ],
-                )
-                    : Stack(
-                  children: [
-                    Center(
-                      child: _buildFileIcon(_fileName!, _selectedFilePath!),
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.01, // 2% of screen height
-                      right: MediaQuery.of(context).size.width * 0.02, // 2% of screen width
-                      child: GestureDetector(
-                        onTap: _removeSelectedFile,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.08, // 8% of screen width
-                          height: MediaQuery.of(context).size.width * 0.08, // 8% of screen width
-                          decoration: const BoxDecoration(
-                            color: colors.darkMediumColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.close_rounded,
-                            color: Colors.white,
-                            size: 24, // Adjust icon size if needed
-                          ),
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
+                      )
+                    : _fileName == null
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.insert_drive_file,
+                                color: Colors.white,
+                                size: MediaQuery.of(context).size.width *
+                                    0.12, // 12% of screen width
+                              ),
+                              SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.02), // 2% of screen height
+                              Text(
+                                'Select File',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery.of(context).size.width *
+                                      0.05, // 5% of screen width
+                                ),
+                              ),
+                            ],
+                          )
+                        : Stack(
+                            children: [
+                              Center(
+                                child: _buildFileIcon(
+                                    _fileName!, _selectedFilePath!),
+                              ),
+                              Positioned(
+                                top: MediaQuery.of(context).size.height *
+                                    0.01, // 2% of screen height
+                                right: MediaQuery.of(context).size.width *
+                                    0.02, // 2% of screen width
+                                child: GestureDetector(
+                                  onTap: _removeSelectedFile,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.08, // 8% of screen width
+                                    height: MediaQuery.of(context).size.width *
+                                        0.08, // 8% of screen width
+                                    decoration: const BoxDecoration(
+                                      color: colors.darkMediumColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.close_rounded,
+                                      color: Colors.white,
+                                      size: 24, // Adjust icon size if needed
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
               ),
             ),
-
             SizedBox(height: screenHeight * 0.04),
             const Text(
               'Choose Encryption Type',
@@ -214,16 +227,16 @@ class _EncryptScreenState extends State<EncryptScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildEncryptionButton('AES-256', context),
+                    _buildEncryptionButton('AES-256-GCM', context),
                     SizedBox(width: screenWidth * 0.01),
-                    _buildEncryptionButton('Blowfish',context),
+                    _buildEncryptionButton('Blowfish', context),
                   ],
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildEncryptionButton('Twofish', context),
+                    _buildEncryptionButton('AES-128-GCM', context),
                     SizedBox(width: screenWidth * 0.01),
                     _buildEncryptionButton('ChaCha20', context),
                   ],
@@ -233,7 +246,8 @@ class _EncryptScreenState extends State<EncryptScreen> {
             SizedBox(height: screenHeight * 0.05),
             Center(
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.85, // 80% of screen width
+                width: MediaQuery.of(context).size.width *
+                    0.85, // 80% of screen width
                 child: Container(
                   decoration: BoxDecoration(
                     color: _selectedEncryption != null
@@ -245,33 +259,37 @@ class _EncryptScreenState extends State<EncryptScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       padding: EdgeInsets.symmetric(
-                        vertical: MediaQuery.of(context).size.width * 0.04, // 4% of screen width for vertical padding
-                        horizontal: MediaQuery.of(context).size.width * 0.05, // 5% of screen width for horizontal padding
+                        vertical: MediaQuery.of(context).size.width *
+                            0.04, // 4% of screen width for vertical padding
+                        horizontal: MediaQuery.of(context).size.width *
+                            0.05, // 5% of screen width for horizontal padding
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       elevation: 0,
                     ),
-                    onPressed: _selectedEncryption != null && _selectedFilePath != null
-                        ? () async {
-                      // Start encryption logic
-                      String encryptedData = await EncryptionMethods.encryptFile(
-                          '$_selectedFilePath',
-                          '$_selectedEncryption'
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              'Encryption Successful: $encryptedData'),
-                        ),
-                      );
-                    }
-                        : null,
+                    onPressed:
+                        _selectedEncryption != null && _selectedFilePath != null
+                            ? () async {
+                                // Start encryption logic
+                                String encryptedData =
+                                    await EncryptionMethods.encryptFile(
+                                        '$_selectedFilePath',
+                                        '$_selectedEncryption');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Encryption Successful: $encryptedData'),
+                                  ),
+                                );
+                              }
+                            : null,
                     child: Text(
                       'Start Encryption',
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.05, // Font size based on screen width
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.05, // Font size based on screen width
                         color: _selectedEncryption != null
                             ? Colors.white
                             : Colors.grey,
@@ -282,7 +300,6 @@ class _EncryptScreenState extends State<EncryptScreen> {
                 ),
               ),
             )
-
           ],
         ),
       ),
@@ -373,7 +390,8 @@ class _EncryptScreenState extends State<EncryptScreen> {
   Widget _buildEncryptionButton(String encryptionType, BuildContext context) {
     final isSelected = _selectedEncryption == encryptionType;
     final screenWidth = MediaQuery.of(context).size.width; // Get screen width
-    final buttonWidth = screenWidth * 0.4; // Adjust button width as a percentage of screen width
+    final buttonWidth = screenWidth *
+        0.4; // Adjust button width as a percentage of screen width
     final buttonHeight = 50.0; // Fixed height for buttons
 
     return GestureDetector(
@@ -412,7 +430,6 @@ class _EncryptScreenState extends State<EncryptScreen> {
     );
   }
 
-
   void _showFileSelectionAlert() {
     showDialog(
       context: context,
@@ -434,4 +451,3 @@ class _EncryptScreenState extends State<EncryptScreen> {
     );
   }
 }
-

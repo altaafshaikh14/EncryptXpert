@@ -26,28 +26,27 @@ class _HomeScreenState extends State<HomeScreen> {
           MaterialPageRoute(builder: (context) => EncryptScreen()),
         );
         break;
-    // Add cases for other navigation items if needed
-    // case 2:
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => DecryptScreen()),
-    //   );
-    //   break;
-    // case 3:
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => ActivityScreen()),
-    //   );
-    //   break;
-    // case 4:
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => SettingsScreen()),
-    //   );
-    //   break;
+      // Add cases for other navigation items if needed
+      // case 2:
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => DecryptScreen()),
+      //   );
+      //   break;
+      // case 3:
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => ActivityScreen()),
+      //   );
+      //   break;
+      // case 4:
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => SettingsScreen()),
+      //   );
+      //   break;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
         flexibleSpace: SafeArea(
           child: _buildAppBarContent(),
         ),
-        toolbarHeight: 100.0, // Increase this value if needed for proper spacing
+        toolbarHeight:
+            100.0, // Increase this value if needed for proper spacing
       ),
       backgroundColor: colors.darkColor,
       body: Column(
@@ -94,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Flexible(
             child: ListView(
-              padding: EdgeInsets.zero, // Remove any padding if you want full-width items
+              padding: EdgeInsets
+                  .zero, // Remove any padding if you want full-width items
               children: [
                 _buildActivityItem('File decrypted', 'Nov 23, 2023'),
                 _buildActivityItem('File encrypted', 'Oct 23, 2023'),
@@ -113,7 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: colors.darkMediumColor,
-
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -153,7 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
           const Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
             child: CircleAvatar(
-              backgroundImage: AssetImage('assets/img.png'), // Add your profile image here
+              backgroundImage:
+                  AssetImage('assets/img.png'), // Add your profile image here
               radius: 24.0, // Adjust the size here
             ),
           ),
@@ -198,27 +199,43 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Row(
           children: [
-            Expanded(child: FlippingCard(title: 'AES-256', description: 'AES-256 encryption is a symmetric key algorithm that provides robust data protection through a 256-bit key, ensuring high security and resistance against brute-force attacks.')),
+            Expanded(
+                child: FlippingCard(
+                    title: 'AES-256',
+                    description:
+                        'AES-256 encryption is a symmetric key algorithm that provides robust data protection through a 256-bit key, ensuring high security and resistance against brute-force attacks.')),
             SizedBox(width: 8),
-            Expanded(child: FlippingCard(title: 'Blowfish', description: 'Blowfish is a fast, symmetric key encryption algorithm that uses variable-length keys (32-448 bits) for secure data encryption, widely known for its efficiency.')),
+            Expanded(
+                child: FlippingCard(
+                    title: 'Blowfish',
+                    description:
+                        'Blowfish is a fast, symmetric key encryption algorithm that uses variable-length keys (32-448 bits) for secure data encryption, widely known for its efficiency.')),
           ],
         ),
         SizedBox(height: 8),
         Row(
           children: [
-            Expanded(child: FlippingCard(title: 'Twofish', description: 'Twofish is a symmetric key block cipher encryption algorithm, known for its speed and flexibility. It uses a 128-bit block size and supports key sizes up to 256 bits.')),
+            Expanded(
+                child: FlippingCard(
+                    title: 'Twofish',
+                    description:
+                        'Twofish is a symmetric key block cipher encryption algorithm, known for its speed and flexibility. It uses a 128-bit block size and supports key sizes up to 256 bits.')),
             SizedBox(width: 8),
-            Expanded(child: FlippingCard(title: 'ChaCha20', description: 'ChaCha20 is a fast, secure stream cipher that encrypts data using a 256-bit key, offering high performance and resistance to cryptographic attacks.')),
+            Expanded(
+                child: FlippingCard(
+                    title: 'ChaCha20',
+                    description:
+                        'ChaCha20 is a fast, secure stream cipher that encrypts data using a 256-bit key, offering high performance and resistance to cryptographic attacks.')),
           ],
         ),
       ],
     );
   }
 
-
   Widget _buildActivityItem(String activity, String date) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 26.0), // Adjust vertical padding
+      padding: const EdgeInsets.symmetric(
+          vertical: 6.0, horizontal: 26.0), // Adjust vertical padding
       child: Row(
         children: [
           Expanded(
@@ -239,8 +256,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
-
   String _getGreeting() {
     final now = DateTime.now();
     final hour = now.hour;
@@ -259,7 +274,8 @@ class FlippingCard extends StatefulWidget {
   final String title;
   final String description;
 
-  const FlippingCard({super.key, required this.title, required this.description});
+  const FlippingCard(
+      {super.key, required this.title, required this.description});
 
   @override
   _FlippingCardState createState() => _FlippingCardState();
@@ -295,31 +311,32 @@ class _FlippingCardState extends State<FlippingCard> {
         },
         child: isFlipped
             ? Container(
-          key: ValueKey<bool>(isFlipped),
-          padding: const EdgeInsets.all(12.0),
-          decoration: BoxDecoration(
-            color: colors.darkMediumColor,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            widget.description,
-            style: const TextStyle(color: Colors.white),
-          ),
-        )
+                key: ValueKey<bool>(isFlipped),
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: colors.darkMediumColor,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Text(
+                  widget.description,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              )
             : Container(
-          key: ValueKey<bool>(!isFlipped),
-          padding: const EdgeInsets.all(12.0),
-          decoration: BoxDecoration(
-            color: colors.darkMediumColor,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Center(
-            child: Text(
-              widget.title,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+                key: ValueKey<bool>(!isFlipped),
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: colors.darkMediumColor,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Center(
+                  child: Text(
+                    widget.title,
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
       ),
     );
   }
